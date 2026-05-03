@@ -3,21 +3,22 @@ server:
 
 spring:
   datasource:
-    url: jdbc:h2:mem:campusconnect;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    # URL'yi docker-compose'daki POSTGRES_DB ismiyle (campusconnect) güncelledik
+    url: jdbc:postgresql://localhost:5432/campusconnect
+    username: postgres
+    # Şifreyi docker-compose'daki POSTGRES_PASSWORD değeriyle (postgres) eşitledik
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
   jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create-drop
-    show-sql: false
+      # 'update' ayarı senin psql ile oluşturduğun tabloları silmez, üzerine ekleme yapar
+      ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.H2Dialect
+        format_sql: true
 
 jwt:
   secret: campusconnect-super-secret-key-2024-bengugdik-agu
