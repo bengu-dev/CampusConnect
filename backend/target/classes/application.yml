@@ -1,0 +1,25 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    # URL'yi docker-compose'daki POSTGRES_DB ismiyle (campusconnect) güncelledik
+    url: jdbc:postgresql://localhost:5432/campusconnect
+    username: postgres
+    # Şifreyi docker-compose'daki POSTGRES_PASSWORD değeriyle (postgres) eşitledik
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      # 'update' ayarı senin psql ile oluşturduğun tabloları silmez, üzerine ekleme yapar
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+jwt:
+  secret: campusconnect-super-secret-key-2024-bengugdik-agu
+  expiration: 86400000
