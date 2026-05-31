@@ -53,3 +53,9 @@ backend/target/
 .dart_tool/
 
 build/
+
+backend/target/
+
+.dart_tool/
+
+build/
